@@ -1,12 +1,11 @@
 package com.bridgelabz.objectorientedprograms;
-
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Linkedlist;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Account {
-    static Linkedlist<Stock> myLinkedList = new Linkedlist<Stock>();
+    static LinkedList<Stock> Linkedlist = new Linkedlist<Stock>();
     Scanner sc = new Scanner(System.in);
 
     public void printReport(){
@@ -23,10 +22,10 @@ public class Account {
     }
     public int accountBalance(int balance){
         System.out.println("Current balance is:"+balance);
-        ProfileOfStock.value=balance;
+        StockPortfolio.value=balance;
         return balance;
     }
-    public void buyStock(int bal) {
+    public void debit(int bal) {
         int currentBalance = bal;
         System.out.println("Which stock you want to buy");
         String shareName = sc.next();
@@ -37,14 +36,13 @@ public class Account {
         Stock stock = new Stock(shareName, noOfShare, sharePrice);
         int debit = stock.getNoOfShare() * stock.getSharePrice();
         if (debit < currentBalance) {
-             Linkedlist.add(stock);
+        	Linkedlist.add(stock);
              currentBalance = currentBalance - debit;
              accountBalance(currentBalance);
          }
         else{
              System.out.println("Account balance less than debit amt requested");
             }
-
     }
     public void particularStock(){
         if (Linkedlist.size() > 0) {
@@ -69,7 +67,7 @@ public class Account {
     public void totalValueOfStock() {
         int totalCollection = 0;
         if (Linkedlist.size() > 0){
-            for (int i = 0; i < Linkedlistt.size(); i++) {
+            for (int i = 0; i < Linkedlist.size(); i++) {
                 Stock stock = Linkedlist.get(i);
                 totalCollection = totalCollection + stock.getNoOfShare() * stock.getSharePrice();
             }
@@ -78,7 +76,6 @@ public class Account {
         else{
             System.err.println("No share info available");
         }
-
     }
 }
 
